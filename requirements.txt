@@ -1,0 +1,5 @@
+pandas
+pyarrow
+google-cloud-bigquery
+boto3
+python-dotenv
