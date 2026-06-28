@@ -1,6 +1,5 @@
 .venv/
-__pycache__/
 .env
-.ipynb_checkpoints/
-*.parquet
-*.csv
+credentials/
+__pycache__/
+*.pyc
