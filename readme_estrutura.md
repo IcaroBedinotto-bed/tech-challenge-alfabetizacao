@@ -75,41 +75,41 @@ O fluxo visual abaixo exemplifica como os dados transitam entre as tecnologias e
 
 ## 🔄 Fluxo de Dados
 
-[cite_start]O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico[cite: 148]:
+O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico:
 
-1. [cite_start]**Coleta e Origem:** Ingestão dos datasets de UF, Municípios, Dados de Alunos e tabelas de Metas a partir do repositório público[cite: 51, 52, 53, 54, 55, 56, 57].
-2. [cite_start]**Carga Inicial (Bronze):** Os arquivos são gravados no *Storage* mantendo sua estrutura nativa (ex: JSON ou CSV)[cite: 77].
-3. [cite_start]**Qualidade e Integração (Silver):** É executado um pipeline que valida regras estritas de qualidade (deduplicação, checagem de nulos e integridade referencial entre os códigos de municípios)[cite: 81, 82, 111, 112, 113, 114]. [cite_start]O resultado é persistido em formato colunar (ex: **Parquet**) otimizado para consultas[cite: 128].
-4. [cite_start]**Consumo Analítico (Gold):** Cruzamento final gerando métricas agregadas por ano, região e rede de ensino, prontas para alimentar dashboards e ferramentas de decisão governamental[cite: 87, 91, 93].
+1. **Coleta e Origem:** Ingestão dos datasets de UF, Municípios, Dados de Alunos e tabelas de Metas a partir do repositório público.
+2. **Carga Inicial (Bronze):** Os arquivos são gravados no *Storage* mantendo sua estrutura nativa (ex: JSON ou CSV).
+3. **Qualidade e Integração (Silver):** É executado um pipeline que valida regras estritas de qualidade (deduplicação, checagem de nulos e integridade referencial entre os códigos de municípios). O resultado é persistido em formato colunar (ex: **Parquet**) otimizado para consultas.
+4. **Consumo Analítico (Gold):** Cruzamento final gerando métricas agregadas por ano, região e rede de ensino, prontas para alimentar dashboards e ferramentas de decisão governamental.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas e Decisões Arquiteturais
 
 ### Ferramentas Escolhidas e Justificativas
-* [cite_start]**Provedor de Nuvem:** `[AWS / GCP / Azure]` devido à maturidade de infraestrutura elástica e ferramentas nativas de Big Data[cite: 136, 151].
-* [cite_start]**Processamento Spark / Engine:** `[Databricks / AWS Glue / EM R]` para garantir escalabilidade horizontal no tratamento de grandes volumes de microdados educacionais[cite: 21, 29, 151].
-* [cite_start]**Armazenamento:** `[Amazon S3 / Google Cloud Storage]` pelo excelente custo-benefício de retenção a longo prazo (FinOps)[cite: 39, 128, 151].
-* [cite_start]**Streaming:** `[Kafka / AWS Kinesis / GCP PubSub]` para garantir baixa latência na captura de novos eventos de proficiência[cite: 68, 151].
+* **Provedor de Nuvem:** `[AWS / GCP / Azure]` devido à maturidade de infraestrutura elástica e ferramentas nativas de Big Data.
+* **Processamento Spark / Engine:** `[Databricks / AWS Glue / EM R]` para garantir escalabilidade horizontal no tratamento de grandes volumes de microdados educacionais.
+* **Armazenamento:** `[Amazon S3 / Google Cloud Storage]` pelo excelente custo-benefício de retenção a longo prazo (FinOps).
+* **Streaming:** `[Kafka / AWS Kinesis / GCP PubSub]` para garantir baixa latência na captura de novos eventos de proficiência.
 
 ### Trade-offs Considerados
-* [cite_start]**Batch vs. Streaming:** Optou-se por uma pipeline híbrida porque os dados agregados do Saeb mudam anualmente (Batch), mas as atualizações das medições locais de desempenho nas escolas exigem respostas em tempo quase real (Streaming) para intervenções pedagógicas rápidas[cite: 12, 63, 68, 155].
-* [cite_start]**Data Lake vs. Data Warehouse:** A utilização da arquitetura Lakehouse (armazenamento em arquivos estruturados como Parquet) foi escolhida em vez de um DW tradicional para manter os custos operacionais baixos, preservando a capacidade de escalar para análise massiva de dados não estruturados[cite: 128, 156].
+* **Batch vs. Streaming:** Optou-se por uma pipeline híbrida porque os dados agregados do Saeb mudam anualmente (Batch), mas as atualizações das medições locais de desempenho nas escolas exigem respostas em tempo quase real (Streaming) para intervenções pedagógicas rápidas.
+* **Data Lake vs. Data Warehouse:** A utilização da arquitetura Lakehouse (armazenamento em arquivos estruturados como Parquet) foi escolhida em vez de um DW tradicional para manter os custos operacionais baixos, preservando a capacidade de escalar para análise massiva de dados não estruturados.
 
 ---
 
 ## 📉 Monitoramento e FinOps (Otimização de Custos)
 
-* [cite_start]**Observabilidade:** O pipeline conta com mecanismos de monitoramento para rastrear falhas de ingestão, latência de ponta a ponta e volume de dados processados através de alertas e métricas centralizadas[cite: 117, 119, 120, 121, 122].
-* [cite_start]**Práticas de FinOps:** * Uso mandatório de arquivos compactados em formato **Parquet** com estratégias de particionamento por Ano e UF, reduzindo drasticamente o volume de dados varridos por query[cite: 128, 129].
-    * [cite_start]Políticas de ciclo de vida (*Lifecycle*) configuradas para mover dados históricos frios da camada Bronze para classes de armazenamento mais baratas[cite: 79, 134].
+* **Observabilidade:** O pipeline conta com mecanismos de monitoramento para rastrear falhas de ingestão, latência de ponta a ponta e volume de dados processados através de alertas e métricas centralizadas.
+* **Práticas de FinOps:** * Uso mandatório de arquivos compactados em formato **Parquet** com estratégias de particionamento por Ano e UF, reduzindo drasticamente o volume de dados varridos por query.
+    * Políticas de ciclo de vida (*Lifecycle*) configuradas para mover dados históricos frios da camada Bronze para classes de armazenamento mais baratas.
 
 ---
 
 ## 🤖 Aplicação em Inteligência Artificial (IA)
 
-[cite_start]A base estruturada na camada **Gold** serve como insumo ideal e confiável para iniciativas avançadas de Ciência de Dados e IA[cite: 87, 163]:
-* [cite_start]**Modelos de Predição de Alfabetização:** Criação de modelos preditivos (como regressões ou árvores de decisão) para antecipar quais municípios correm risco de não atingirem a meta de 2030[cite: 14, 100, 164].
-* [cite_start]**Análise de Desigualdade e Vulnerabilidade:** Enriquecimento futuro utilizando dados socioeconômicos do IBGE e do Censo Escolar para clusterizar municípios com perfis de vulnerabilidade educacional semelhantes, permitindo a distribuição otimizada de recursos públicos[cite: 24, 99, 100, 103, 104, 165].
+A base estruturada na camada **Gold** serve como insumo ideal e confiável para iniciativas avançadas de Ciência de Dados e IA:
+* **Modelos de Predição de Alfabetização:** Criação de modelos preditivos (como regressões ou árvores de decisão) para antecipar quais municípios correm risco de não atingirem a meta de 2030.
+* **Análise de Desigualdade e Vulnerabilidade:** Enriquecimento futuro utilizando dados socioeconômicos do IBGE e do Censo Escolar para clusterizar municípios com perfis de vulnerabilidade educacional semelhantes, permitindo a distribuição otimizada de recursos públicos.
 
 ```
