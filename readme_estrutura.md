@@ -1,10 +1,5 @@
-Aqui está o `README.md` completo e estruturado com base nas diretrizes e dados do documento fornecido para o seu **Tech Challenge - Fase 2**. O conteúdo foi elaborado de forma abrangente, simulando a entrega de um time de engenharia de dados em um cenário real.
-
-Substitua as marcações em formato `[Tecnologia]` pelas ferramentas que o seu grupo escolheu utilizar (ex: AWS/GCP, S3/Cloud Storage, Lambda/Cloud Functions, Spark/Databricks, etc.).
-
 ---
 
-```markdown
 # Pipeline Híbrido para Análise da Alfabetização no Brasil
 
 Este repositório contém a solução desenvolvida para o **Tech Challenge - Fase 2**, que consiste em um pipeline híbrido de dados (Batch e Streaming) estruturado sob a Arquitetura Medalhão para integrar e analisar dados públicos sobre a alfabetização infantil no Brasil.
@@ -13,45 +8,45 @@ Este repositório contém a solução desenvolvida para o **Tech Challenge - Fas
 
 ## 📋 Contexto do Problema
 
-[cite_start]A alfabetização na infância é um dos pilares fundamentais para o desenvolvimento educacional, social e econômico de um país[cite: 9]. [cite_start]Com o objetivo de garantir que todas as crianças brasileiras estejam alfabetizadas até o final do 2º ano do ensino fundamental, foi instituído o **Compromisso Nacional Criança Alfabetizada**, uma política pública que mobiliza a União, estados, Distrito Federal e municípios[cite: 10, 14].
+A alfabetização na infância é um dos pilares fundamentais para o desenvolvimento educacional, social e econômico de um país. Com o objetivo de garantir que todas as crianças brasileiras estejam alfabetizadas até o final do 2º ano do ensino fundamental, foi instituído o **Compromisso Nacional Criança Alfabetizada**, uma política pública que mobiliza a União, estados, Distrito Federal e municípios.
 
-[cite_start]Para apoiar e subsidiar essa iniciativa com parâmetros nacionais, o INEP realizou a **Pesquisa Alfabetiza Brasil** em 2023[cite: 11]. [cite_start]O grande desafio para gestores públicos e cientistas de dados é que compreender e mitigar as desigualdades educacionais exige ir além da análise isolada de indicadores[cite: 15]. [cite_start]É fundamental cruzar dados macro de metas nacionais com realidades territoriais e microdados educacionais altamente heterogêneos para viabilizar políticas públicas baseadas em evidências[cite: 16, 24].
+Para apoiar e subsidiar essa iniciativa com parâmetros nacionais, o INEP realizou a **Pesquisa Alfabetiza Brasil** em 2023. O grande desafio para gestores públicos e cientistas de dados é que compreender e mitigar as desigualdades educacionais exige ir além da análise isolada de indicadores. É fundamental cruzar dados macro de metas nacionais com realidades territoriais e microdados educacionais altamente heterogêneos para viabilizar políticas públicas baseadas em evidências.
 
 ---
 
 ## 🎓 Desafio Educacional e Indicador de Alfabetização
 
-[cite_start]A partir da Pesquisa Alfabetiza Brasil, determinou-se um ponto de corte técnico de **743 pontos** na escala de proficiência do Saeb, estabelecendo o nível mínimo a partir do qual uma criança é considerada formalmente alfabetizada[cite: 12]. 
+A partir da Pesquisa Alfabetiza Brasil, determinou-se um ponto de corte técnico de **743 pontos** na escala de proficiência do Saeb, estabelecendo o nível mínimo a partir do qual uma criança é considerada formalmente alfabetizada. 
 
-[cite_start]Com base nesse corte, instituiu-se o **Indicador Criança Alfabetizada**, que expressa o percentual de estudantes que atingem esse patamar de proficiência[cite: 13]. [cite_start]O desafio educacional deste projeto centra-se em consolidar e monitorar este indicador frente às metas estabelecidas, as quais preveem que 100% das crianças atinjam a meta até 2030[cite: 14]. [cite_start]A engenharia de dados atua aqui como o motor que viabiliza o cruzamento do indicador de alfabetização com dados de UF, municípios e dados de alunos para identificar gargalos geográficos e operacionais[cite: 51, 52, 56, 57].
+Com base nesse corte, instituiu-se o **Indicador Criança Alfabetizada**, que expressa o percentual de estudantes que atingem esse patamar de proficiência. O desafio educacional deste projeto centra-se em consolidar e monitorar este indicador frente às metas estabelecidas, as quais preveem que 100% das crianças atinjam a meta até 2030. A engenharia de dados atua aqui como o motor que viabiliza o cruzamento do indicador de alfabetização com dados de UF, municípios e dados de alunos para identificar gargalos geográficos e operacionais.
 
 ---
 
 ## 🏛️ Arquitetura Proposta
 
-[cite_start]A arquitetura foi projetada em ambiente de nuvem (**[AWS / GCP / Azure]**) seguindo o paradigma híbrido (*Lambda Architecture*) para lidar eficientemente com duas velocidades de dados[cite: 29, 61, 136]:
+A arquitetura foi projetada em ambiente de nuvem (**[AWS / GCP / Azure]**) seguindo o paradigma híbrido (*Lambda Architecture*) para lidar eficientemente com duas velocidades de dados:
 
-1. [cite_start]**Camada Batch (Lote):** Processamento periódico focado em dados históricos e volumosos (Metas nacionais, estaduais e municipais, além de dados territoriais fornecidos pela plataforma *Base dos Dados*)[cite: 25, 63, 64, 65, 66].
-2. [cite_start]**Camada Streaming (Tempo Real):** Simulação de eventos em tempo quase real para capturar atualizações dinâmicas de indicadores, novas medições de desempenho escolar e alterações imediatas de resultados[cite: 68, 69, 70, 71].
+1. **Camada Batch (Lote):** Processamento periódico focado em dados históricos e volumosos (Metas nacionais, estaduais e municipais, além de dados territoriais fornecidos pela plataforma *Base dos Dados*).
+2. **Camada Streaming (Tempo Real):** Simulação de eventos em tempo quase real para capturar atualizações dinâmicas de indicadores, novas medições de desempenho escolar e alterações imediatas de resultados.
 
-[cite_start]Para garantir a qualidade e governança, os dados progridem através da **Arquitetura Medalhão** (camadas Bronze, Silver e Gold) antes de estarem prontos para o consumo[cite: 30, 38].
+Para garantir a qualidade e governança, os dados progridem através da **Arquitetura Medalhão** (camadas Bronze, Silver e Gold) antes de estarem prontos para o consumo.
 
 ---
 
 ## ⚙️ Descrição da Arquitetura da Solução
 
-[cite_start]O ecossistema de dados está dividido em quatro etapas funcionais de processamento[cite: 42]:
+O ecossistema de dados está dividido em quatro etapas funcionais de processamento:
 
-* [cite_start]**Ingestão:** Os dados históricos da *Base dos Dados* são extraídos via rotinas Batch[cite: 25, 62]. [cite_start]Paralelamente, eventos contínuos alimentam uma fila de mensagens em tempo real (Streaming)[cite: 67, 68].
-* [cite_start]**Camada Bronze (Raw Data):** Armazenamento de persistência de dados brutos exatamente como vieram da fonte[cite: 76, 77]. [cite_start]O histórico completo é preservado em formato imutável[cite: 78, 79].
-* [cite_start]**Camada Silver (Dados Tratados):** Camada onde ocorrem as transformações pesadas: limpeza de dados, tratamento de valores ausentes, padronização de esquemas/tipos, validação de chaves e a unificação/enriquecimento de dados de diferentes tabelas heterogêneas[cite: 80, 81, 82, 83, 85, 86].
-* [cite_start]**Camada Gold (Camada Analítica):** Tabelas agregadas e otimizadas em formato colunar altamente performático[cite: 87]. [cite_start]Esta camada expõe visões prontas como a *evolução temporal do indicador de alfabetização por município* e a *comparação direta entre metas esperadas e resultados atingidos*[cite: 89, 90, 91].
+* **Ingestão:** Os dados históricos da *Base dos Dados* são extraídos via rotinas Batch. Paralelamente, eventos contínuos alimentam uma fila de mensagens em tempo real (Streaming).
+* **Camada Bronze (Raw Data):** Armazenamento de persistência de dados brutos exatamente como vieram da fonte. O histórico completo é preservado em formato imutável.
+* **Camada Silver (Dados Tratados):** Camada onde ocorrem as transformações pesadas: limpeza de dados, tratamento de valores ausentes, padronização de esquemas/tipos, validação de chaves e a unificação/enriquecimento de dados de diferentes tabelas heterogêneas.
+* **Camada Gold (Camada Analítica):** Tabelas agregadas e otimizadas em formato colunar altamente performático. Esta camada expõe visões prontas como a *evolução temporal do indicador de alfabetização por município* e a *comparação direta entre metas esperadas e resultados atingidos*.
 
 ---
 
 ## 🗺️ Diagrama da Pipeline
 
-[cite_start]O fluxo visual abaixo exemplifica como os dados transitam entre as tecnologias e as camadas da arquitetura medalhão[cite: 30]:
+O fluxo visual abaixo exemplifica como os dados transitam entre as tecnologias e as camadas da arquitetura medalhão:
 
 
 ```
