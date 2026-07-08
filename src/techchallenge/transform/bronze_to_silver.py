@@ -21,8 +21,44 @@ def bronze_to_silver(df):
             mapping_file="rede.csv",
             left_on="rede",
             right_on="ID_tipo_rde",
-            drop_columns=["ID_tipo_rde"]
+            drop_columns=["ID_tipo_rde", "rede"]
         )
+    
+    if "presenca" in df.columns:
+        df = enrich_dataframe(
+            df=df,
+            mapping_file="presenca.csv",
+            left_on="presenca",
+            right_on="ID_presenca",
+            drop_columns=["ID_presenca"],
+        )
+        df["presenca"] = df["Descricao"]
+        df = df.drop(columns=["Descricao"])
+    
+
+    if "alfabetizado" in df.columns:
+        df = enrich_dataframe(
+            df=df,
+            mapping_file="alfabetizado.csv",
+            left_on="alfabetizado",
+            right_on="id_alfabetizado",
+            drop_columns=["id_alfabetizado"],
+        )
+        df["alfabetizado"] = df["descricao"]
+        df = df.drop(columns=["descricao"])
+
+
+    if "preenchimento_caderno" in df.columns:
+        df = enrich_dataframe(
+            df=df,
+            mapping_file="preenchimento.csv",
+            left_on="preenchimento_caderno",
+            right_on="id_preenchimento",
+            drop_columns=["id_preenchimento"],
+        )
+        df["preenchimento_caderno"] = df["descricao"]
+        df = df.drop(columns=["descricao"])     
+
 
     if "sigla_uf" in df.columns:
         df = enrich_dataframe(
@@ -32,7 +68,8 @@ def bronze_to_silver(df):
             right_on="sigla",
             drop_columns=["sigla"]
         )
-    
+
+
     if "id_municipio" in df.columns:
         df = enrich_dataframe(
             df,
@@ -41,6 +78,6 @@ def bronze_to_silver(df):
             right_on="municipio_id",
             drop_columns=["municipio_id"]
         )
-        
+
     return df
 
