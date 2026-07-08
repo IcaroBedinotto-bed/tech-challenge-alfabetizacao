@@ -1,0 +1,13 @@
+pandas #usado para manipulação de dados
+numpy #Operaões numéricas
+pyarrow #Gravar Parquet
+
+google-cloud-bigquery #Ler a base de dados
+google-auth #Autenticação no Bigquery
+
+boto3 #Enviar arquivo para o S3
+
+python-dotenv #Ler variáveis do .env
+
+db-dtypes #Permite leituras no formato que vem do BigQuery
+
