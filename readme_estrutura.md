@@ -24,7 +24,7 @@ Com base nesse corte, instituiu-se o **Indicador Criança Alfabetizada**, que ex
 
 ## 🏛️ Arquitetura Proposta
 
-A arquitetura foi projetada em ambiente de nuvem (**[AWS / GCP / Azure]**) seguindo o paradigma híbrido (*Lambda Architecture*) para lidar eficientemente com duas velocidades de dados:
+A arquitetura foi projetada em ambiente de nuvem (**[AWS]**) seguindo o paradigma híbrido (*Lambda Architecture*) para lidar eficientemente com duas velocidades de dados:
 
 1. **Camada Batch (Lote):** Processamento periódico focado em dados históricos e volumosos (Metas nacionais, estaduais e municipais, além de dados territoriais fornecidos pela plataforma *Base dos Dados*).
 2. **Camada Streaming (Tempo Real):** Simulação de eventos em tempo quase real para capturar atualizações dinâmicas de indicadores, novas medições de desempenho escolar e alterações imediatas de resultados.
@@ -87,8 +87,17 @@ O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico:
 ## 🛠️ Tecnologias Utilizadas e Decisões Arquiteturais
 
 ### Ferramentas Escolhidas e Justificativas
-* **Provedor de Nuvem:** `[AWS / GCP / Azure]` devido à maturidade de infraestrutura elástica e ferramentas nativas de Big Data.
+* **Provedor de Nuvem:** `[AWS]` devido à maturidade de infraestrutura elástica e ferramentas nativas de Big Data.
 * **Processamento Spark / Engine:** `[Databricks / AWS Glue / EM R]` para garantir escalabilidade horizontal no tratamento de grandes volumes de microdados educacionais.
+* Implementação do pipeline de ingestão de dados em streaming utilizando PySpark. Esta etapa visa criar uma estrutura de ingestão robusta e eficiente para o projeto.
+
+Principais funcionalidades:
+
+Simulação de Dados: Criação de um script simulador_streaming.py que gera dados aleatórios estruturados, mantendo a fidelidade ao esquema da tabela de alunos (campos como UF e ID de município), permitindo validação do pipeline sem dependências externas de custo.
+
+Estrutura de Pastas: O processo automatiza a organização dos dados, criando uma pasta temporária para recepção dos arquivos brutos e uma pasta de streaming para o processamento final (camada Bronze), garantindo o desacoplamento e a organização do Data Lake.
+
+Pipeline PySpark: Configurado para monitorar a pasta temporária e realizar a ingestão contínua, permitindo testes locais antes da integração com fontes de dados em nuvem.
 * **Armazenamento:** `[Amazon S3 / Google Cloud Storage]` pelo excelente custo-benefício de retenção a longo prazo (FinOps).
 * **Streaming:** `[Kafka / AWS Kinesis / GCP PubSub]` para garantir baixa latência na captura de novos eventos de proficiência.
 
