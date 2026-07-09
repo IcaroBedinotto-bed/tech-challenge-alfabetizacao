@@ -1,7 +1,9 @@
 import pandas as pd
 from techchallenge.transform.bronze_to_silver import bronze_to_silver
 
-bronze = pd.read_parquet("data/bronze/alunos/alunos.parquet")
+bronze = pd.read_parquet(
+    "data/bronze/batch/alunos/alunos.parquet"
+)
 
 silver = bronze_to_silver(bronze)
 
