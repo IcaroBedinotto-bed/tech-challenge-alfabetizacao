@@ -1,0 +1,14 @@
+{
+    "ano": 2024,
+    "id_municipio": 3550308,
+    "id_escola": "ESC-399",
+    "id_aluno": "32b362db-df86-49d4-9d6a-93afc00ef8b1",
+    "caderno": "CAD-A",
+    "serie": 5,
+    "rede": "Privada",
+    "presenca": 1,
+    "preenchimento_caderno": 1,
+    "proficiencia": 343.19,
+    "peso_aluno": 0.87,
+    "alfabetizado": 1
+}

@@ -24,16 +24,11 @@ class PipelineMonitor:
     def start(self):
         self.start_time = datetime.now()
 
-    def finish(self, input_rows, output_rows, columns, bronze_path, silver_path):
-
-        def get_file_size(path: Path) -> float:
-            return round(path.stat().st_size / (1024 * 1024), 2)
+    def finish(self, input_rows, output_rows, columns, bronze_size, silver_size):
         
         end_time = datetime.now()
 
         duration = end_time - self.start_time
-        bronze_size = get_file_size(bronze_path)
-        silver_size = get_file_size(silver_path)
 
         throughput = round(output_rows / duration.total_seconds(),2)
         variation = round(((silver_size - bronze_size) / bronze_size) * 100,2)

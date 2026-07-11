@@ -3,16 +3,17 @@ import json
 import pandas as pd
 from datetime import datetime
 import shutil
+from techchallenge.ts3_client.s3_client import S3Client
 
 class StreamingConsumer:
 
     def __init__(self):
 
-        self.input_path = Path("data/temp_streaming_input")
-
-        self.output_path = Path("data/bronze/streaming/alunos")
+        self.input_path = Path("extract/streaming/data/temp_streaming_input")
 
         self.processed_path = Path("data/temp_streaming_processed")
+
+        self.s3 = S3Client()
 
     def _find_json_files(self):
 
@@ -29,21 +30,7 @@ class StreamingConsumer:
                 registros.append(json.load(f))
 
         return pd.DataFrame(registros)
-    
-    def _save_parquet(self, dataframe):
 
-        self.output_path.mkdir(parents=True, exist_ok=True)
-
-        file_name = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-        output_file = self.output_path / f"streaming_{file_name}.parquet"
-
-        dataframe.to_parquet(
-            output_file,
-            index=False
-        )
-
-        print(f"Arquivo salvo em: {output_file}")
     
     def _move_processed_files(self, files):
 
@@ -62,7 +49,9 @@ class StreamingConsumer:
 
         print("Streaming Consumer iniciado.")
 
+
         arquivos = self._find_json_files()
+
 
         print(f"Arquivos encontrados: {len(arquivos)}")
 
@@ -71,7 +60,15 @@ class StreamingConsumer:
             return
 
         dataframe = self._load_json_files(arquivos)
-        self._save_parquet(dataframe)
+
+        file_name = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        self.s3.save_dataframe(
+            dataframe=dataframe,
+            layer="bronze/streaming/alunos",
+            filename=f"streaming_{file_name}.parquet"
+        )
+
         self._move_processed_files(arquivos)
 
         print("\nColunas:")
