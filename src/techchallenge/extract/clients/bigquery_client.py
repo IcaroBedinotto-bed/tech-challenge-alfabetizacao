@@ -1,5 +1,6 @@
 from google.cloud import bigquery
 import pandas as pd
+from google.oauth2 import service_account
 
 from techchallenge.config.settings import settings
 
@@ -10,8 +11,13 @@ class BigQueryClient:
     """
 
     def __init__(self):
+        credentials = service_account.Credentials.from_service_account_file(
+            settings.credentials_path
+        )
+
         self.client = bigquery.Client(
-            project=settings.project_id
+            project=settings.project_id,
+            credentials=credentials
         )
 
     def read_table(

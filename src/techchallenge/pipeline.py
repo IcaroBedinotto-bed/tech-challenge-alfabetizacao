@@ -7,6 +7,7 @@ from techchallenge.load.parquet_writer import ParquetWriter
 from techchallenge.transform.bronze_to_silver import bronze_to_silver
 from techchallenge.monitoring.monitor import PipelineMonitor
 from techchallenge.monitoring.summary import PipelineSummary
+from techchallenge.ts3_client.s3_client import S3Client
 import shutil
 
 
@@ -14,7 +15,7 @@ class BronzePipeline:
 
     def __init__(self):
         self.extract_service = ExtractionService()
-        self.writer = ParquetWriter()
+        self.s3 = S3Client()
 
     def run(self, limit: int | None = None):
         summary = PipelineSummary()
@@ -31,26 +32,25 @@ class BronzePipeline:
             
                 print(f"Extraindo {table}...")
 
-                bronze_path = Path(
-                    f"data/bronze/batch/{table}/{table}.parquet"
-                )
+                filename = f"{table}.parquet"
 
                 df = self.extract_service.extract_table(
                     table_name=table,
                     limit=limit
                 )
 
-                self.writer.save(
+                bronze_size = self.s3.save_dataframe(
                     dataframe=df,
-                    output_path=Path(bronze_path),
+                    layer="bronze",
+                    filename=filename
                 )
 
                 metrics = monitor.finish(
                     input_rows=len(df),
                     output_rows=len(df),
                     columns=len(df.columns),
-                    bronze_path=bronze_path,
-                    silver_path=bronze_path
+                    bronze_size=bronze_size,
+                    silver_size=bronze_size
                 )
 
                 print(f"{table} concluída.")
@@ -66,64 +66,58 @@ class BronzePipeline:
 class SilverPipeline:
 
     def __init__(self):
-        self.writer = ParquetWriter()
+        self.s3 = S3Client()
 
     def load_bronze_table(self, table):
 
-        batch_path = Path(
-            f"data/bronze/batch/{table}/{table}.parquet"
+        dataframe = self.s3.load_dataframe(
+            layer="bronze",
+            filename=f"{table}.parquet"
         )
-
-        dataframe = pd.read_parquet(batch_path)
 
         # Apenas a tabela alunos possui streaming
         if table != "alunos":
             return dataframe
 
-        streaming_path = Path(
-            "data/bronze/streaming/alunos"
+        streaming_files = self.s3.list_files(
+            "bronze/streaming/alunos"
         )
 
-        if streaming_path.exists():
+        if streaming_files:
 
-            streaming_files = list(
-                streaming_path.glob("*.parquet")
+            dfs = []
+
+            for file in streaming_files:
+                dfs.append(
+                    self.s3.load_dataframe(
+                        layer="bronze/streaming/alunos",
+                        filename=file
+                    )
+                )
+
+            streaming_df = pd.concat(
+                dfs,
+                ignore_index=True
             )
 
-            if streaming_files:
-
-                streaming_df = pd.concat(
-                    [pd.read_parquet(file) for file in streaming_files],
-                    ignore_index=True
-                )
-
-                dataframe = pd.concat(
-                    [dataframe, streaming_df],
-                    ignore_index=True
-                )
+            dataframe = pd.concat(
+                [dataframe, streaming_df],
+                ignore_index=True
+            )
 
         return dataframe
 
     def archive_streaming_files(self):
 
-        streaming_path = Path(
-            "data/bronze/streaming/alunos"
+        files = self.s3.list_files(
+            "bronze/streaming/alunos"
         )
 
-        processed_path = Path(
-            "data/bronze/streaming/processed"
-        )
-
-        processed_path.mkdir(
-            parents=True,
-            exist_ok=True
-        )
-
-        for file in streaming_path.glob("*.parquet"):
-
-            shutil.move(
-                file,
-                processed_path / file.name
+        for file in files:
+            self.s3.move_file(
+                source_layer="bronze/streaming/alunos",
+                destination_layer="bronze/streaming/processed",
+                filename=file
             )
 
     def run(self):
@@ -143,9 +137,6 @@ class SilverPipeline:
 
                 print(f"Transformando {table}...")
 
-                bronze_path = Path(
-                    f"data/bronze/batch/{table}/{table}.parquet"
-                )
 
                 # Toda a lógica de leitura fica aqui
                 dataframe = self.load_bronze_table(table)
@@ -161,13 +152,21 @@ class SilverPipeline:
                     table
                 )
 
-                silver_path = Path(
-                    f"data/silver/{table}/{table}.parquet"
+
+                self.s3.save_dataframe(
+                    dataframe=dataframe,
+                    layer="silver",
+                    filename=f"{table}.parquet"
                 )
 
-                self.writer.save(
-                    dataframe=dataframe,
-                    output_path=silver_path
+                bronze_size = self.s3.get_file_size(
+                    layer="bronze",
+                    filename=f"{table}.parquet"
+                )
+
+                silver_size = self.s3.get_file_size(
+                    layer="silver",
+                    filename=f"{table}.parquet"
                 )
 
                 if table == "alunos":
@@ -177,8 +176,8 @@ class SilverPipeline:
                     input_rows=input_rows,
                     output_rows=len(dataframe),
                     columns=len(dataframe.columns),
-                    bronze_path=bronze_path,
-                    silver_path=silver_path
+                    bronze_size=bronze_size,
+                    silver_size=silver_size
                 )
 
                 summary.add(metrics)
@@ -199,12 +198,13 @@ class SilverPipeline:
 class GoldPipeline:
 
     def __init__(self):
-        self.writer = ParquetWriter()
+        self.s3 = S3Client()
 
     def load_silver(self):
 
-        return pd.read_parquet(
-            Path("data/silver/alunos/alunos.parquet")
+        return self.s3.load_dataframe(
+            layer="silver",
+            filename="alunos.parquet"
         )
 
     # ===========================
@@ -212,22 +212,19 @@ class GoldPipeline:
     # ===========================
     def load_metas(self):
 
-        self.meta_municipio = pd.read_parquet(
-            Path(
-                "data/silver/meta_alfabetizacao_municipio/meta_alfabetizacao_municipio.parquet"
-            )
+        self.meta_municipio = self.s3.load_dataframe(
+            layer="silver",
+            filename="meta_alfabetizacao_municipio.parquet"
         )
 
-        self.meta_uf = pd.read_parquet(
-            Path(
-                "data/silver/meta_alfabetizacao_uf/meta_alfabetizacao_uf.parquet"
-            )
+        self.meta_uf = self.s3.load_dataframe(
+            layer="silver",
+            filename="meta_alfabetizacao_uf.parquet"
         )
 
-        self.meta_brasil = pd.read_parquet(
-            Path(
-                "data/silver/meta_alfabetizacao_brasil/meta_alfabetizacao_brasil.parquet"
-            )
+        self.meta_brasil = self.s3.load_dataframe(
+            layer="silver",
+            filename="meta_alfabetizacao_brasil.parquet"
         )
 
 
@@ -553,32 +550,28 @@ class GoldPipeline:
 
     def save_dimensions(self):
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.dim_municipio,
-            output_path=Path(
-                "data/gold/dimensions/dim_municipio/dim_municipio.parquet"
-            )
+            layer="gold/dimensions",
+            filename="dim_municipio.parquet"
         )
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.dim_rede,
-            output_path=Path(
-                "data/gold/dimensions/dim_rede/dim_rede.parquet"
-            )
+            layer="gold/dimensions",
+            filename="dim_rede.parquet"
         )
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.dim_tempo,
-            output_path=Path(
-                "data/gold/dimensions/dim_tempo/dim_tempo.parquet"
-            )
+            layer="gold/dimensions",
+            filename="dim_tempo.parquet"
         )
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.dim_uf,
-            output_path=Path(
-                "data/gold/dimensions/dim_uf/dim_uf.parquet"
-            )
+            layer="gold/dimensions",
+            filename="dim_uf.parquet"
         )
 
         print("Dimensões salvas.")
@@ -586,25 +579,22 @@ class GoldPipeline:
 
     def save_facts(self):
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.fato_municipio,
-            output_path=Path(
-                "data/gold/facts/fato_alfabetizacao_municipio/fato_alfabetizacao_municipio.parquet"
-            )
+            layer="gold/facts",
+            filename="fato_alfabetizacao_municipio.parquet"
         )
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.fato_uf,
-            output_path=Path(
-                "data/gold/facts/fato_alfabetizacao_uf/fato_alfabetizacao_uf.parquet"
-            )
+            layer="gold/facts",
+            filename="fato_alfabetizacao_uf.parquet"
         )
 
-        self.writer.save(
+        self.s3.save_dataframe(
             dataframe=self.fato_brasil,
-            output_path=Path(
-                "data/gold/facts/fato_alfabetizacao_brasil/fato_alfabetizacao_brasil.parquet"
-            )
+            layer="gold/facts",
+            filename="fato_alfabetizacao_brasil.parquet"
         )
 
         print("Tabelas fato salvas.")
@@ -633,14 +623,16 @@ class GoldPipeline:
 
         self.save_facts()
 
+        silver_size = self.s3.get_layer_size("silver")
+
+        gold_size = self.s3.get_layer_size("gold")
+
         metrics = monitor.finish(
             input_rows=len(dataframe),
             output_rows=len(self.fato_municipio),
             columns=len(self.fato_municipio.columns),
-            bronze_path=Path("data/silver/alunos/alunos.parquet"),
-            silver_path=Path(
-                "data/gold/facts/fato_alfabetizacao_municipio/fato_alfabetizacao_municipio.parquet"
-            )
+            bronze_size=silver_size,
+            silver_size=gold_size
         )
 
         summary.add(metrics)
