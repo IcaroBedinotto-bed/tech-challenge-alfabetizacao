@@ -159,7 +159,7 @@ O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico:
      * Quantidade de colunas processadas;
      * Arquivos produzidos.
 
-Ao final da execução é apresentado um resumo da pipeline.
+  * Ao final da execução é apresentado um resumo da pipeline.
 
 * **Práticas de FinOps:** * Uso mandatório de arquivos compactados em formato **Parquet** com estratégias de particionamento por Ano e UF, reduzindo drasticamente o volume de dados varridos por query.
     * Políticas de ciclo de vida (*Lifecycle*) configuradas para mover dados históricos frios da camada Bronze para classes de armazenamento mais baratas.
