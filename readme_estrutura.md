@@ -49,26 +49,70 @@ O ecossistema de dados está dividido em quatro etapas funcionais de processamen
 O fluxo visual abaixo exemplifica como os dados transitam entre as tecnologias e as camadas da arquitetura medalhão:
 
 
+---
+
+# Arquitetura
+
+```
+                +----------------+
+                | Banco SQL      |
+                +-------+--------+
+                        |
+                        v
+                Bronze (Batch)
+                        |
+                        |
+                        |
+ Streaming Producer      |
+(simulador_streaming)    |
+        |               |
+        v               |
+temp_streaming_input    |
+        |               |
+        v               |
+ Streaming Consumer      |
+        |               |
+        v               |
+ Bronze (Streaming) -----+
+                        |
+                        v
+                     Silver
+                        |
+                        v
+                      Gold
 ```
 
-[Fontes Batch: Base dos Dados] ───> [Processo Batch] ──────┐
-│
-[Fontes Streaming: Eventos]   ───> [Mensageria/Fila] ──────┴─> [Camada BRONZE (S3 / Cloud Storage)]
-│
-[Job de Tratamento]
-│
-▼
-[Camada SILVER (Parquet)]
-│
-[Agregações e Negócio]
-│
-▼
-[Camada GOLD (Datamarts)]
-│
-┌───────────────────────────┴───────────────────────────┐
-▼                                                       ▼
-[Dashboards BI / Analytics]                             [Modelos IA / Analytics]
+---
 
+# Estrutura do Projeto
+
+```
+src/
+└── techchallenge/
+    ├── batch.py
+    ├── streaming.py
+    ├── pipeline.py
+    ├── batch_orchestrator.py
+    ├── streaming_orchestrator.py
+    │
+    ├── extract/
+    ├── transform/
+    ├── load/
+    ├── monitoring/
+    ├── config/
+    │
+    └── streaming/
+        ├── simulador_streaming.py
+        └── streaming_consumer.py
+
+data/
+├── bronze/
+│   ├── batch/
+│   └── streaming/
+├── silver/
+├── gold/
+├── temp_streaming_input/
+└── temp_streaming_processed/
 ```
 
 ---
@@ -81,26 +125,23 @@ O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico:
 2. **Carga Inicial (Bronze):** Os arquivos são gravados no *Storage* mantendo sua estrutura nativa (ex: JSON ou CSV).
 3. **Qualidade e Integração (Silver):** É executado um pipeline que valida regras estritas de qualidade (deduplicação, checagem de nulos e integridade referencial entre os códigos de municípios). O resultado é persistido em formato colunar (ex: **Parquet**) otimizado para consultas.
 4. **Consumo Analítico (Gold):** Cruzamento final gerando métricas agregadas por ano, região e rede de ensino, prontas para alimentar dashboards e ferramentas de decisão governamental.
+5. **Armazenamento em nuvem:** A implementação utiliza a biblioteca **Boto3**, que é o SDK oficial da AWS para Python, permitindo realizar operações como envio, leitura e gerenciamento de arquivos armazenados em um bucket S3.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas e Decisões Arquiteturais
 
-### Ferramentas Escolhidas e Justificativas
+### Ferramentas Escolhidas
 * **Provedor de Nuvem:** `[AWS]` devido à maturidade de infraestrutura elástica e ferramentas nativas de Big Data.
-* **Processamento Spark / Engine:** `[Databricks / AWS Glue / EM R]` para garantir escalabilidade horizontal no tratamento de grandes volumes de microdados educacionais.
-* Implementação do pipeline de ingestão de dados em streaming utilizando PySpark. Esta etapa visa criar uma estrutura de ingestão robusta e eficiente para o projeto.
-
-Principais funcionalidades:
-
-Simulação de Dados: Criação de um script simulador_streaming.py que gera dados aleatórios estruturados, mantendo a fidelidade ao esquema da tabela de alunos (campos como UF e ID de município), permitindo validação do pipeline sem dependências externas de custo.
-
-Estrutura de Pastas: O processo automatiza a organização dos dados, criando uma pasta temporária para recepção dos arquivos brutos e uma pasta de streaming para o processamento final (camada Bronze), garantindo o desacoplamento e a organização do Data Lake.
-
-Pipeline PySpark: Configurado para monitorar a pasta temporária e realizar a ingestão contínua, permitindo testes locais antes da integração com fontes de dados em nuvem.
-* **Armazenamento:** `[Amazon S3 / Google Cloud Storage]` pelo excelente custo-benefício de retenção a longo prazo (FinOps).
-* **Streaming:** `[Kafka / AWS Kinesis / GCP PubSub]` para garantir baixa latência na captura de novos eventos de proficiência.
-
+* **Processamento Spark / Engine:**
+   * Pipeline PySpark
+   * Python
+   * Pandas
+   * SQLAlchemy
+   * Parquet
+   * PyArrow
+* **Armazenamento:** `[Amazon S3]`
+  
 ### Trade-offs Considerados
 * **Batch vs. Streaming:** Optou-se por uma pipeline híbrida porque os dados agregados do Saeb mudam anualmente (Batch), mas as atualizações das medições locais de desempenho nas escolas exigem respostas em tempo quase real (Streaming) para intervenções pedagógicas rápidas.
 * **Data Lake vs. Data Warehouse:** A utilização da arquitetura Lakehouse (armazenamento em arquivos estruturados como Parquet) foi escolhida em vez de um DW tradicional para manter os custos operacionais baixos, preservando a capacidade de escalar para análise massiva de dados não estruturados.
@@ -110,6 +151,16 @@ Pipeline PySpark: Configurado para monitorar a pasta temporária e realizar a in
 ## 📉 Monitoramento e FinOps (Otimização de Custos)
 
 * **Observabilidade:** O pipeline conta com mecanismos de monitoramento para rastrear falhas de ingestão, latência de ponta a ponta e volume de dados processados através de alertas e métricas centralizadas.
+* Cada etapa do pipeline registra:
+   
+   * Tempo de execução;
+   * Quantidade de registros de entrada;
+   * Quantidade de registros de saída;
+   * Quantidade de colunas processadas;
+   * Arquivos produzidos.
+
+Ao final da execução é apresentado um resumo da pipeline.
+
 * **Práticas de FinOps:** * Uso mandatório de arquivos compactados em formato **Parquet** com estratégias de particionamento por Ano e UF, reduzindo drasticamente o volume de dados varridos por query.
     * Políticas de ciclo de vida (*Lifecycle*) configuradas para mover dados históricos frios da camada Bronze para classes de armazenamento mais baratas.
 
