@@ -151,13 +151,13 @@ O ciclo de vida do dado dentro da pipeline cumpre o seguinte fluxo lógico:
 ## 📉 Monitoramento e FinOps (Otimização de Custos)
 
 * **Observabilidade:** O pipeline conta com mecanismos de monitoramento para rastrear falhas de ingestão, latência de ponta a ponta e volume de dados processados através de alertas e métricas centralizadas.
-* Cada etapa do pipeline registra:
+  * Cada etapa do pipeline registra:
    
-   * Tempo de execução;
-   * Quantidade de registros de entrada;
-   * Quantidade de registros de saída;
-   * Quantidade de colunas processadas;
-   * Arquivos produzidos.
+     * Tempo de execução;
+     * Quantidade de registros de entrada;
+     * Quantidade de registros de saída;
+     * Quantidade de colunas processadas;
+     * Arquivos produzidos.
 
 Ao final da execução é apresentado um resumo da pipeline.
 
