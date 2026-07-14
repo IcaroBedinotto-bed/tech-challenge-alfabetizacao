@@ -173,3 +173,25 @@ A base estruturada na camada **Gold** serve como insumo ideal e confiável para 
 * **Análise de Desigualdade e Vulnerabilidade:** Enriquecimento futuro utilizando dados socioeconômicos do IBGE e do Censo Escolar para clusterizar municípios com perfis de vulnerabilidade educacional semelhantes, permitindo a distribuição otimizada de recursos públicos.
 
 ```
+
+# Execução
+
+## Batch
+
+```bash
+python -m src.techchallenge.batch
+```
+
+## Simulador Streaming
+
+```bash
+python -m src.techchallenge.streaming.simulador_streaming
+```
+
+## Pipeline Streaming
+
+```bash
+python -m src.techchallenge.streaming
+```
+
+---
