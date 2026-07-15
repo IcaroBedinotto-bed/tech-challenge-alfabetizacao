@@ -27,7 +27,7 @@ def bronze_to_silver(df, table_name):
 
             df = df.rename(columns={"rede": "Rede"})
 
-            rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+            rede_map = pd.read_csv("config/mappings/rede.csv")
 
             df = df.merge(
                 rede_map,

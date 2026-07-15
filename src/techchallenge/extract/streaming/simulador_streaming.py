@@ -3,6 +3,7 @@ import random
 import time
 from pathlib import Path
 import uuid
+import os
 
 
 def gerar_dados_streaming(pasta_destino: str):

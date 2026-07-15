@@ -1,0 +1,1317 @@
+2026-07-10 12:07:28,803 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 20e6a4da-2cbd-467d-9a2a-0f365d972fcc
+
+2026-07-10 12:07:29,419 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 1091a2b8-0e4e-4014-bf4f-4f84a02fefb5
+
+2026-07-10 12:07:30,031 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 433c11e1-1446-4872-9804-089c427cb270
+
+2026-07-10 12:07:30,338 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 7f30f78c-e368-43ef-9e96-1b8e161ab968
+
+2026-07-10 12:07:30,645 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 64b161b2-a2d8-47b1-bad7-b106f44251a1
+
+2026-07-10 12:07:30,953 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 37, in run
+    df = self.extract_service.extract_table(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\services\extraction_service.py", line 19, in extract_table
+    return self.client.read_table(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\extract\clients\bigquery_client.py", line 36, in read_table
+    return self.client.query(query).to_dataframe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 3590, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 205, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\_job_helpers.py", line 151, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\query.py", line 1489, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\job\base.py", line 825, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\bigquery\client.py", line 861, in _call_api
+    return call()
+           ^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\cloud\_http\__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/techchallenge/jobs?prettyPrint=false: Access Denied: Project techchallenge: User does not have bigquery.jobs.create permission in project techchallenge.
+
+Location: None
+Job ID: 5bf902aa-1437-4932-836c-0dd8f5e4e220
+
+2026-07-10 12:11:03,381 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:11:05,367 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:11:07,349 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:11:09,286 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:11:11,342 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:11:13,289 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 42, in run
+    self.s3.save_dataframe(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 89, in save_dataframe
+    self.upload_file(
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 50, in upload_file
+    self.client.upload_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 175, in upload_file
+    return transfer.upload_file(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 452, in upload_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1035, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1154, in _emit_api_params
+    self.meta.events.emit(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\handlers.py", line 327, in validate_bucket_name
+    raise ParamValidationError(report=error_msg)
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid bucket name "609629128204-tech-challenge-alfabetizacao ": Bucket name must match the regex "^[a-zA-Z0-9.\-_]{1,255}$" or be an ARN matching the regex "^arn:(aws).*:(s3|s3-object-lambda):[a-z\-0-9]*:[0-9]{12}:accesspoint[/:][a-zA-Z0-9\-.]{1,63}$|^arn:(aws).*:s3-outposts:[a-z\-0-9]+:[0-9]{12}:outpost[/:][a-zA-Z0-9\-]{1,63}[/:]accesspoint[/:][a-zA-Z0-9\-]{1,63}$"
+2026-07-10 12:18:19,943 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:18:21,639 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:18:23,451 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:18:25,398 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:18:27,241 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:18:29,287 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 35, in finish
+    bronze_size = get_file_size(bronze_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\monitoring\monitor.py", line 30, in get_file_size
+    return round(path.stat().st_size / (1024 * 1024), 2)
+                 ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'stat'
+2026-07-10 12:30:46,978 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:30:48,742 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:30:50,771 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:30:52,815 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:30:54,861 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:30:56,807 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 48, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_path'
+2026-07-10 12:32:15,062 | INFO | Pipeline=Bronze | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=12 | Tempo=0:00:03.603033Camada anterior=0.01Camada atual=0.01
+2026-07-10 12:32:16,887 | INFO | Pipeline=Bronze | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=15 | Tempo=0:00:01.824724Camada anterior=0.01Camada atual=0.01
+2026-07-10 12:32:18,895 | INFO | Pipeline=Bronze | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=15 | Tempo=0:00:02.007136Camada anterior=0.01Camada atual=0.01
+2026-07-10 12:32:20,777 | INFO | Pipeline=Bronze | Tabela=meta_alfabetizacao_brasil | Status=SUCESSO | Input=3 | Output=3 | Colunas=11 | Tempo=0:00:01.881311Camada anterior=0.01Camada atual=0.01
+2026-07-10 12:32:22,727 | INFO | Pipeline=Bronze | Tabela=meta_alfabetizacao_municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=13 | Tempo=0:00:01.949695Camada anterior=0.01Camada atual=0.01
+2026-07-10 12:32:24,774 | INFO | Pipeline=Bronze | Tabela=meta_alfabetizacao_uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=12 | Tempo=0:00:02.046314Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:05:50,054 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 168, in run
+    bronze_size = self.s3.get_file_size(
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 158, in get_file_size
+    response = self.client.head_object(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+2026-07-10 19:05:51,032 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 168, in run
+    bronze_size = self.s3.get_file_size(
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 158, in get_file_size
+    response = self.client.head_object(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+2026-07-10 19:05:52,014 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 168, in run
+    bronze_size = self.s3.get_file_size(
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 158, in get_file_size
+    response = self.client.head_object(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+2026-07-10 19:05:52,362 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:05:52,788 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:05:53,207 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:09:42,122 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 181, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_silver'
+2026-07-10 19:09:43,258 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 181, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_silver'
+2026-07-10 19:09:44,484 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 181, in run
+    metrics = monitor.finish(
+              ^^^^^^^^^^^^^^^
+TypeError: PipelineMonitor.finish() got an unexpected keyword argument 'bronze_silver'
+2026-07-10 19:09:44,817 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:09:45,146 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:09:45,548 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:12:18,464 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.947966Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:12:19,727 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.262485Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:49,835 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.913605Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:50,835 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:00.999841Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:51,895 | INFO | Pipeline=Silver | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.059919Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:53,118 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_brasil | Status=SUCESSO | Input=3 | Output=3 | Colunas=12 | Tempo=0:00:01.221264Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:54,238 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=17 | Tempo=0:00:01.120332Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:14:55,341 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.102853Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:20,217 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.854774Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:21,230 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.012980Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:22,295 | INFO | Pipeline=Silver | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.065836Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:22,835 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:15:23,254 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:15:23,737 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 156, in run
+    dataframe = bronze_to_silver(
+                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\transform\bronze_to_silver.py", line 30, in bronze_to_silver
+    rede_map = pd.read_csv("src/techchallenge/config/mappings/rede.csv")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/techchallenge/config/mappings/rede.csv'
+2026-07-10 19:15:39,606 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:02.102469Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:40,729 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.123316Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:41,713 | INFO | Pipeline=Silver | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:00.980545Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:42,677 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_brasil | Status=SUCESSO | Input=3 | Output=3 | Colunas=12 | Tempo=0:00:00.963644Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:43,804 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=17 | Tempo=0:00:01.124904Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:15:44,767 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:00.963300Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:33,895 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.944850Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:34,875 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:00.979119Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:35,879 | INFO | Pipeline=Silver | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.004949Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:36,872 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_brasil | Status=SUCESSO | Input=3 | Output=3 | Colunas=12 | Tempo=0:00:00.992035Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:37,939 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=17 | Tempo=0:00:01.066674Camada anterior=0.01Camada atual=0.01
+2026-07-10 19:16:38,948 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.007505Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:26:14,897 | ERROR | Erro ao processar alunos
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:26:15,296 | ERROR | Erro ao processar municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:26:15,504 | ERROR | Erro ao processar uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:26:15,705 | ERROR | Erro ao processar meta_alfabetizacao_brasil
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:26:15,910 | ERROR | Erro ao processar meta_alfabetizacao_municipio
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:26:16,121 | ERROR | Erro ao processar meta_alfabetizacao_uf
+Traceback (most recent call last):
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 142, in run
+    dataframe = self.load_bronze_table(table)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\pipeline.py", line 73, in load_bronze_table
+    dataframe = self.s3.load_dataframe(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 87, in load_dataframe
+    self.download_file(layer, filename)
+  File "C:\Users\monef\OneDrive\Documentos\GitHub\tech-challenge-alfabetizacao\src\techchallenge\ts3_client\s3_client.py", line 35, in download_file
+    self.client.download_file(
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\inject.py", line 223, in download_file
+    return transfer.download_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\s3\transfer.py", line 484, in download_file
+    future.result()
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\futures.py", line 287, in result
+    raise self._exception
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\tasks.py", line 272, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\s3transfer\download.py", line 379, in _submit
+    response = client.head_object(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\monef\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (403) when calling the HeadObject operation: Forbidden
+2026-07-10 22:33:55,892 | INFO | Pipeline=Silver | Tabela=alunos | Status=SUCESSO | Input=15 | Output=15 | Colunas=16 | Tempo=0:00:04.887510Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:33:57,226 | INFO | Pipeline=Silver | Tabela=municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.334062Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:33:58,602 | INFO | Pipeline=Silver | Tabela=uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=19 | Tempo=0:00:01.375602Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:33:59,783 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_brasil | Status=SUCESSO | Input=3 | Output=3 | Colunas=12 | Tempo=0:00:01.181177Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:34:01,124 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_municipio | Status=SUCESSO | Input=10 | Output=10 | Colunas=17 | Tempo=0:00:01.340766Camada anterior=0.01Camada atual=0.01
+2026-07-10 22:34:02,445 | INFO | Pipeline=Silver | Tabela=meta_alfabetizacao_uf | Status=SUCESSO | Input=10 | Output=10 | Colunas=16 | Tempo=0:00:01.321385Camada anterior=0.01Camada atual=0.01
+2026-07-10 23:17:11,438 | INFO | Pipeline=Gold | Tabela=Indicadores | Status=SUCESSO | Input=15 | Output=9 | Colunas=11 | Tempo=0:00:06.243594Camada anterior=0.06Camada atual=0.03

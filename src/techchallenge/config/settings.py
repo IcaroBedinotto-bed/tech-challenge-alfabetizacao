@@ -5,6 +5,7 @@ import os
 
 load_dotenv()
 
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 @dataclass(frozen=True)
 class Settings:
@@ -16,10 +17,5 @@ class Settings:
 settings = Settings(
     project_id=os.getenv("GCP_PROJECT_ID"),
     dataset_id="basedosdados.br_inep_avaliacao_alfabetizacao",
-    credentials_path=Path(
-        os.getenv(
-            "GOOGLE_APPLICATION_CREDENTIALS",
-            "credentials/google_credentials.json"
-        )
-    ),
+    credentials_path=BASE_DIR / "credentials" / "google_credentials.json"
 )
