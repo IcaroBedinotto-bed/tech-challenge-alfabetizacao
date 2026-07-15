@@ -172,14 +172,13 @@ A base estruturada na camada **Gold** serve como insumo ideal e confiável para 
 * **Modelos de Predição de Alfabetização:** Criação de modelos preditivos (como regressões ou árvores de decisão) para antecipar quais municípios correm risco de não atingirem a meta de 2030.
 * **Análise de Desigualdade e Vulnerabilidade:** Enriquecimento futuro utilizando dados socioeconômicos do IBGE e do Censo Escolar para clusterizar municípios com perfis de vulnerabilidade educacional semelhantes, permitindo a distribuição otimizada de recursos públicos.
 
-```
 
 # Execução
 
 ## Batch
 
 ```bash
-python -m src.techchallenge.batch
+python -m main_batch
 ```
 
 ## Simulador Streaming
@@ -191,7 +190,7 @@ python -m src.techchallenge.streaming.simulador_streaming
 ## Pipeline Streaming
 
 ```bash
-python -m src.techchallenge.streaming
+python -m main_streaming
 ```
 
 ---
